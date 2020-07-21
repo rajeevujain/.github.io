@@ -3,23 +3,38 @@
 
 <head>
   <meta charset="utf-8">
-  <script src="https://d3js.org/d3.v5.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body onload='init4();'>
-  <h1>This is Interactive Chart of life expectancy at birth for all Countries</h1>
+<body onload='init1();'>
 
-  <!-- Initialize a select button -->
-  <select id="selectButton"></select>
-  <br>
-  <br>
-  <a href="index.html">Go to First Page</a>
+  <div class="Heading">
+    <h1>Compare Life Expectancy at Birth Between Female and Male</h1>
+  </div>
 
-  <!-- Create a div where the graph will take place -->
+  <div class="MainContent">
+    <p>Everywhere in the world women live longer than men – but this was not always the case. The available data from rich countries shows that women didn’t live longer than men in the 19th century. Why do women live so much longer than men today, and why has this advantage increased over time? The evidence is limited and we only have partial answers. We know that biological, behavioral and environmental factors all contribute to the fact that women live longer than men; but we don’t know exactly how strong the relative contribution of each of these factors is.
+      <br>
+      <br>
+  <p>Independently of the exact weight, we know that at least part of the reason why women live so much longer than men today, but not in the past, has to do with the fact that some key non-biological factors have changed. What are these changing factors? Some are well known and relatively straightforward, like the fact that men smoke more often. Other are more complicated. For example, new evidence shows that in rich countries the female advantage increased in part because infectious diseases used to affect women disproportionately a century ago, so advances in medicine that reduced the long-term health burden from infectious diseases, especially for survivors, ended up raising women’s longevity disproportionately.</p>
+
+  </div>
+
+
+
+  <a href="chart5.html" class="next">Next Page &raquo;</a>
+
   <div id="my_dataviz"></div>
 
-  <!-- Color Scale -->
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <p>World Development Indicator Information
+    <br>
+  Indicator Name : Life expectancy at birth, total (years)
+  Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.
+  Aggregation Method: Weighted average
+  Development Relevance: Mortality rates for different age groups (infants, children, and adults) and overall mortality indicators (life expectancy at birth or survival to a given age) are important indicators of health status in a country. Because data on the incidence and prevalence of diseases are frequently unavailable, mortality rates are often used to identify vulnerable populations. And they are among the indicators most frequently used to compare socioeconomic development across countries.
+  Statistical Concept and Methodology: Life expectancy at birth used here is the average number of years a newborn is expected to live if mortality patterns at the time of its birth remain constant in the future. It reflects the overall mortality level of a population, and summarizes the mortality pattern that prevails across all age groups in a given year. It is calculated in a period life table which provides a snapshot of a population's mortality pattern at a given time. It therefore does not reflect the mortality pattern that a person actually experiences during his/her life, which can be calculated in a cohort life table. High mortality in young age groups significantly lowers the life expectancy at birth. But if a person survives his/her childhood of high mortality, he/she may live much longer. For example, in a population with a life expectancy at birth of 50, there may be few people dying at age 50. The life expectancy at birth may be low due to the high childhood mortality so that once a person survives his/her childhood, he/she may live much longer than 50 years.</p>
+
 
   <script src="chart4.js"></script>
 

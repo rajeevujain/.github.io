@@ -1,4 +1,4 @@
-async function init4() {
+async function init1() {
   var margin = { top: 75, right: 100, bottom: 200, left: 150 },
     width = 960 - margin.left - margin.right,
     //width = 960  - margin.left,
@@ -13,78 +13,132 @@ async function init4() {
       "translate(" + margin.left + "," + margin.top + ")");
 
 
-
-  const data = await d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/All_Countries_pivot.csv");
+  const data = await d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/world.csv");
   //const data = d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/world.csv");
 
-  var allGroup = d3.map(data, function(d){return(d.country)}).keys()
+  data.forEach(function (d) {
+    date = d.date;
+    value = d.value;
+  })
 
-  // add the options to the button
-  d3.select("#selectButton")
-    .selectAll('myOptions')
-    .data(allGroup)
-    .enter()
-    .append('option')
-    .text(function (d) { return d; }) // text showed in the menu
-    .attr("value", function (d) { return d; }) // corresponding value returned by the button
 
-  // A color scale: one color for each group
-  var myColor = d3.scaleOrdinal()
-    .domain(allGroup)
-    .range(d3.schemeSet2);
 
-  // Add X axis --> it is a date format
   var x = d3.scaleLinear()
-    .domain(d3.extent(data, function(d) { return d.year; }))
-    .range([ 0, width ]);
+    //.domain(d3.extent(data, function (d) { return d.date; }))
+    .domain([1962,2018])
+    .range([0, width ]);
+
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).ticks(7));
+    .call(d3.axisBottom(x).tickValues([1962,1966,1970,1974,1978,1982,1986,1990,1994,1998,2002,2006,2010,2014,2018]));
 
-  // Add Y axis
+
+ // text label for the x axis
+  svg.append("text")
+    .attr("transform",
+          "translate(" + (width/2) + " ," +
+                         (height + margin.top + 20) + ")")
+    .style("text-anchor", "middle")
+    .text("Year");
+
+
+
   var y = d3.scaleLinear()
-    .domain([25, d3.max(data, function(d) { return +d.value; })])
-    .range([ height, 0 ]);
+    .domain([50, d3.max(data, function (d) { return +d.value+2; })])
+    .range([height, 0]);
+
   svg.append("g")
     .call(d3.axisLeft(y));
 
-  // Initialize line with first group of the list
-  var line = svg
-    .append('g')
-    .append("path")
-      .datum(data.filter(function(d){return d.country==allGroup[0]}))
+    // text label for the y axis
+  svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Life Expectancy");
+
+  svg.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "steelblue")
+    .attr("stroke-width", 2.5)
+    .attr("d", d3.line()
+      .x(function (d) { return x(d.date) })
+      .y(function (d) { return y(d.value) })
+    )
+
+    // gridlines in x axis function
+function make_x_gridlines() {
+    return d3.axisBottom(x)
+        .ticks(10)
+}
+
+// gridlines in y axis function
+function make_y_gridlines() {
+    return d3.axisLeft(y)
+        .ticks(10)
+}
+
+// add the X gridlines
+svg.append("g")
+  .attr("class", "grid")
+  .attr("transform", "translate(0," + height + ")")
+  .call(make_x_gridlines()
+      .tickSize(-height)
+      .tickFormat("")
+  )
+
+// add the Y gridlines
+svg.append("g")
+  .attr("class", "grid")
+  .call(make_y_gridlines()
+      .tickSize(-width)
+      .tickFormat("")
+  )
+
+
+  //Below code is for Male line chart
+    const dataMale = await d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/male_world.csv");
+    //const data = d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/world.csv");
+
+    dataMale.forEach(function (d) {
+      date = d.date;
+      value = d.value;
+    })
+
+
+    svg.append("path")
+      .datum(dataMale)
+      .attr("fill", "none")
+      .attr("stroke", "green")
+      .attr("stroke-width", 2.5)
       .attr("d", d3.line()
-        .x(function(d) { return x(d.year) })
-        .y(function(d) { return y(+d.value) })
+        .x(function (d) { return x(d.date) })
+        .y(function (d) { return y(d.value) })
       )
-      .attr("stroke", function(d){ return myColor("valueA") })
-      .style("stroke-width", 4)
-      .style("fill", "none")
 
-  // A function that update the chart
-  function update(selectedGroup) {
+      //Below code is for Female line chart
+      const dataFemale = await d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/female_world.csv");
+        //const data = d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/world.csv");
 
-    // Create new data with the selection?
-    var dataFilter = data.filter(function(d){return d.country==selectedGroup})
+        dataFemale.forEach(function (d) {
+          date = d.date;
+          value = d.value;
+        })
 
-    // Give these new data to update line
-    line
-        .datum(dataFilter)
-        .transition()
-        .duration(1000)
-        .attr("d", d3.line()
-          .x(function(d) { return x(d.year) })
-          .y(function(d) { return y(+d.value) })
-        )
-        .attr("stroke", function(d){ return myColor(selectedGroup) })
-  }
 
-  // When the button is changed, run the updateChart function
-  d3.select("#selectButton").on("change", function(d) {
-      // recover the option that has been chosen
-      var selectedOption = d3.select(this).property("value")
-      // run the updateChart function with this selected option
-      update(selectedOption)
-  })
+        svg.append("path")
+          .datum(dataFemale)
+          .attr("fill", "none")
+          .attr("stroke", "red")
+          .attr("stroke-width", 2.5)
+          .attr("d", d3.line()
+            .x(function (d) { return x(d.date) })
+            .y(function (d) { return y(d.value) })
+          )
+
+
 
 }

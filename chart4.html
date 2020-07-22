@@ -5,6 +5,9 @@
   <meta charset="utf-8">
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- Load d3-annotation -->
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
 </head>
 
 <body onload='init1();'>
@@ -14,27 +17,49 @@
   </div>
 
   <div class="MainContent">
-    <p>Everywhere in the world women live longer than men – but this was not always the case. The available data from rich countries shows that women didn’t live longer than men in the 19th century. Why do women live so much longer than men today, and why has this advantage increased over time? The evidence is limited and we only have partial answers. We know that biological, behavioral and environmental factors all contribute to the fact that women live longer than men; but we don’t know exactly how strong the relative contribution of each of these factors is.
-      <br>
-      <br>
-  <p>Independently of the exact weight, we know that at least part of the reason why women live so much longer than men today, but not in the past, has to do with the fact that some key non-biological factors have changed. What are these changing factors? Some are well known and relatively straightforward, like the fact that men smoke more often. Other are more complicated. For example, new evidence shows that in rich countries the female advantage increased in part because infectious diseases used to affect women disproportionately a century ago, so advances in medicine that reduced the long-term health burden from infectious diseases, especially for survivors, ended up raising women’s longevity disproportionately.</p>
-<br>
+  <p>Everywhere in the world women live longer than men – but this was not always the case. The available data from rich countries shows that women didn’t live longer than men in the 19th century. Why do women live so much longer than men today, and why has this advantage increased over time? The evidence is limited and we only have partial answers. We know that biological, behavioral and environmental factors all contribute to the fact that women live longer than men; but we don’t know exactly how strong the relative contribution of each of these factors is.</p>
 
+  <p>Independently of the exact weight, we know that at least part of the reason why women live so much longer than men today, but not in the past, has to do with the fact that some key non-biological factors have changed. What are these changing factors? Some are well known and relatively straightforward, like the fact that men smoke more often. Other are more complicated. For example, new evidence shows that in rich countries the female advantage increased in part because infectious diseases used to affect women disproportionately a century ago, so advances in medicine that reduced the long-term health burden from infectious diseases, especially for survivors, ended up raising women’s longevity disproportionately.</p>
   </div>
 
-<a href="chart5.html" class="next">Next Page &raquo;</a>
 
-<div id="my_dataviz"></div>
+  <table>
+    <tr>
+      <td style="text-align:left;"><a href="chart5.html" class="next">Next Page &raquo;</a>
+      </td>
+    </tr>
+<tr>
+  <td>
+    <p><u>This chart compare life expectancy in years at birth between female, male and total world population</u></p>
+  </td>
+</tr>
 
-  <p>World Development Indicator Information
-    <br>
-  Indicator Name : Life expectancy at birth, total (years)
-  Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.
-  Aggregation Method: Weighted average
-  Development Relevance: Mortality rates for different age groups (infants, children, and adults) and overall mortality indicators (life expectancy at birth or survival to a given age) are important indicators of health status in a country. Because data on the incidence and prevalence of diseases are frequently unavailable, mortality rates are often used to identify vulnerable populations. And they are among the indicators most frequently used to compare socioeconomic development across countries.
-  Statistical Concept and Methodology: Life expectancy at birth used here is the average number of years a newborn is expected to live if mortality patterns at the time of its birth remain constant in the future. It reflects the overall mortality level of a population, and summarizes the mortality pattern that prevails across all age groups in a given year. It is calculated in a period life table which provides a snapshot of a population's mortality pattern at a given time. It therefore does not reflect the mortality pattern that a person actually experiences during his/her life, which can be calculated in a cohort life table. High mortality in young age groups significantly lowers the life expectancy at birth. But if a person survives his/her childhood of high mortality, he/she may live much longer. For example, in a population with a life expectancy at birth of 50, there may be few people dying at age 50. The life expectancy at birth may be low due to the high childhood mortality so that once a person survives his/her childhood, he/she may live much longer than 50 years.</p>
+    <tr>
+      <td><div id="my_dataviz"></div></td>
+    </tr>
 
+<tr>
+  <td><span class="circle-female"></span> Female &nbsp;<span class="circle-male"></span> Male &nbsp;<span class="circle-total"></span> Total World Population</td>
+</tr>
+
+  </table>
+
+
+
+  <div class="fotter">
+
+    <p><u><b>World Development Indicator Information</b></u></p>
+    <p><b>Indicator Name:</b> Life expectancy at birth, total (years)</p>
+    <p><b>Indicator Definition:</b> Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.</p>
+    <p><b>Aggregation Method:</b> Weighted average</p>
+    <p><b>Development Relevance:</b> Mortality rates for different age groups (infants, children, and adults) and overall mortality indicators (life expectancy at birth or survival to a given age) are important indicators of health status in a country. Because data on the incidence and prevalence of diseases are frequently unavailable, mortality rates are often used to identify vulnerable populations. And they are among the indicators most frequently used to compare socioeconomic development across countries.</p>
+    <p><b>Statistical Concept and Methodology:</b> Life expectancy at birth used here is the average number of years a newborn is expected to live if mortality patterns at the time of its birth remain constant in the future. It reflects the overall mortality level of a population, and summarizes the mortality pattern that prevails across all age groups in a given year. It is calculated in a period life table which provides a snapshot of a population's mortality pattern at a given time. It therefore does not reflect the mortality pattern that a person actually experiences during his/her life, which can be calculated in a cohort life table. High mortality in young age groups significantly lowers the life expectancy at birth. But if a person survives his/her childhood of high mortality, he/she may live much longer. For example, in a population with a life expectancy at birth of 50, there may be few people dying at age 50. The life expectancy at birth may be low due to the high childhood mortality so that once a person survives his/her childhood, he/she may live much longer than 50 years.</p>
+  </p>
+
+
+  </div>
 
   <script src="chart4.js"></script>
 
 </body>
+</html>

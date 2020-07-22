@@ -5,6 +5,9 @@
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- Load d3-annotation -->
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
 </head>
 
 <body onload='init1();'>
@@ -17,9 +20,9 @@
   <p>Life expectancy is the key metric for assessing population health. Broader than the narrow metric of the infant and child mortality, which focus solely at mortality at a young age, life expectancy captures the mortality along the entire life course. It tells us the average age of death in a population.
   Estimates suggest that in a pre-modern, poor world, life expectancy was around 30 years in all regions of the world.
   Demographic research also suggests that at the beginning of the 19th century no country in the world had a life expectancy longer than 40 years.
-  Infectious diseases raged in all parts of the world and almost half of all children died before they reached adulthood. And those that survived often died soon after. Without public health measures and without effective medicines diseases were killing most people at a very young age.
-  <br>
-  <br>
+  Infectious diseases raged in all parts of the world and almost half of all children died before they reached adulthood. And those that survived often died soon after without public health measures and without effective medicines diseases were killing most people at a very young age.
+  </p>
+  <p>
   This was the reality for humanity until very recently. Life expectancy in each region of the world stayed fairly stable for most of history until humanity started to make progress against poor health just a few generations ago.
   Life expectancy has increased rapidly since the Age of Enlightenment and some parts of the world achieved substantial health improvements. Since 1900 the global average life expectancy has more than doubled and is now above 70 years. The decline of child mortality was important for the increase of life expectancy.
   Such improvements in life expectancy despite being exclusive to particular countries was a landmark sign of progress. It was the first time in human history that we achieved sustained improvements in health for entire populations. After millennia of stagnation in terrible health conditions the seal was finally broken.
@@ -27,20 +30,37 @@
 
   </div>
 
-<a href="chart2.html" class="next">Next Page &raquo;</a>
+  <table>
+    <tr>
+      <td style="text-align:left;"><a href="chart2.html" class="next">Next Page &raquo;</a>
+      </td>
+    </tr>
+<tr>
+  <td>
+    <p><u>This chart shows life expectancy in years at birth for total world population</u></p>
+  </td>
+</tr>
+
+    <tr>
+      <td><div id="my_dataviz"></div></td>
+    </tr>
+
+  </table>
+
+<div class="fotter">
+
+  <p><u><b>World Development Indicator Information</b></u></p>
+  <p><b>Indicator Name:</b> Life expectancy at birth, total (years)</p>
+  <p><b>Indicator Definition:</b> Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.</p>
+  <p><b>Aggregation Method:</b> Weighted average</p>
+  <p><b>Development Relevance:</b> Mortality rates for different age groups (infants, children, and adults) and overall mortality indicators (life expectancy at birth or survival to a given age) are important indicators of health status in a country. Because data on the incidence and prevalence of diseases are frequently unavailable, mortality rates are often used to identify vulnerable populations. And they are among the indicators most frequently used to compare socioeconomic development across countries.</p>
+  <p><b>Statistical Concept and Methodology:</b> Life expectancy at birth used here is the average number of years a newborn is expected to live if mortality patterns at the time of its birth remain constant in the future. It reflects the overall mortality level of a population, and summarizes the mortality pattern that prevails across all age groups in a given year. It is calculated in a period life table which provides a snapshot of a population's mortality pattern at a given time. It therefore does not reflect the mortality pattern that a person actually experiences during his/her life, which can be calculated in a cohort life table. High mortality in young age groups significantly lowers the life expectancy at birth. But if a person survives his/her childhood of high mortality, he/she may live much longer. For example, in a population with a life expectancy at birth of 50, there may be few people dying at age 50. The life expectancy at birth may be low due to the high childhood mortality so that once a person survives his/her childhood, he/she may live much longer than 50 years.</p>
+</p>
 
 
-  <div id="my_dataviz"></div>
-
-  <p>World Development Indicator Information
-    <br>
-Indicator Name : Life expectancy at birth, total (years)
-Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.
-Aggregation Method: Weighted average
-Development Relevance: Mortality rates for different age groups (infants, children, and adults) and overall mortality indicators (life expectancy at birth or survival to a given age) are important indicators of health status in a country. Because data on the incidence and prevalence of diseases are frequently unavailable, mortality rates are often used to identify vulnerable populations. And they are among the indicators most frequently used to compare socioeconomic development across countries.
-Statistical Concept and Methodology: Life expectancy at birth used here is the average number of years a newborn is expected to live if mortality patterns at the time of its birth remain constant in the future. It reflects the overall mortality level of a population, and summarizes the mortality pattern that prevails across all age groups in a given year. It is calculated in a period life table which provides a snapshot of a population's mortality pattern at a given time. It therefore does not reflect the mortality pattern that a person actually experiences during his/her life, which can be calculated in a cohort life table. High mortality in young age groups significantly lowers the life expectancy at birth. But if a person survives his/her childhood of high mortality, he/she may live much longer. For example, in a population with a life expectancy at birth of 50, there may be few people dying at age 50. The life expectancy at birth may be low due to the high childhood mortality so that once a person survives his/her childhood, he/she may live much longer than 50 years.</p>
+</div>
 
 
   <script src="chart1.js"></script>
-
 </body>
+</html>

@@ -5,6 +5,9 @@
   <meta charset="utf-8">
   <script src="https://d3js.org/d3.v5.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- Load d3-annotation -->
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
 </head>
 
 <body onload='init4();'>
@@ -14,30 +17,49 @@
   </div>
 
   <div class="MainContent">
-    <p>In the early 19th century, life expectancy started to increase in the early industrialized countries while it stayed low in the rest of the world. This led to a very high inequality in how health was distributed across the world. Good health in the rich countries and persistently bad health in those countries that remained poor. Over the last decades this global inequality decreased. No country in the world has a lower life expectancy than the countries with the highest life expectancy in 1800. Many countries that not long ago were suffering from bad health are catching up rapidly.
-  <br>
-  <br>
-  The inequality of life expectancy is still very large across and within countries. In 2018 the country with the lowest life expectancy is the Central African Republic with 53 years, in Hong Kong life expectancy is 32 years longer.
-  <br>
-  Life expectancy is a measure of premature death and it shows large differences in health across the world.
-  The population of many of the richest countries in the world have life expectancies of over 80 years. In 2018 the life expectancy in Spain, Switzerland, Italy, and Japan was over 83 years. In Hong Kong it was the highest with close to 85 years.
-  In the countries with the worst health life expectancy is between 50 and 60 years. The population of the Central African Republic has the lowest life expectancy in 2018 with 53 years.</p>
-<br>
+    <p>In the early 19th century, life expectancy started to increase in the early industrialized countries while it stayed low in the rest of the world. This led to a very high inequality in how health was distributed across the world. Good health in the rich countries and persistently bad health in those countries that remained poor. Over the last decades this global inequality decreased. No country in the world has a lower life expectancy than the countries with the highest life expectancy in 1800. Many countries that not long ago were suffering from bad health are catching up rapidly. The inequality of life expectancy is still very large across and within countries. In 2018 the country with the lowest life expectancy is the Central African Republic with 53 years, in Hong Kong life expectancy is 32 years longer.</p>
+<p>Life expectancy is a measure of premature death and it shows large differences in health across the world.
+The population of many of the richest countries in the world have life expectancies of over 80 years. In 2018 the life expectancy in Spain, Switzerland, Italy, and Japan was over 83 years. In Hong Kong it was the highest with close to 85 years.
+In the countries with the worst health life expectancy is between 50 and 60 years. The population of the Central African Republic has the lowest life expectancy in 2018 with 53 years.</p>
+  </div>
+
+
+  <table>
+    <tr>
+      <td style="text-align:left;"><a href="index.html" class="next">Start Over</a>
+      </td>
+    </tr>
+
+    <tr>
+  <td>
+    <p><u>This chart compare life expectancy for specific country with total world</u></p>
+  </td>
+</tr>
+
+    <tr>
+      <td><div style="text-align:left;"><select id="selectButton"></select></div>
+        <div id="my_dataviz"></div></td>
+    </tr>
+
+  </table>
+
+
+
+  <div class="fotter">
+
+    <p><u><b>World Development Indicator Information</b></u></p>
+    <p><b>Indicator Name:</b> Life expectancy at birth, total (years)</p>
+    <p><b>Indicator Definition:</b> Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.</p>
+    <p><b>Aggregation Method:</b> Weighted average</p>
+    <p><b>Development Relevance:</b> Mortality rates for different age groups (infants, children, and adults) and overall mortality indicators (life expectancy at birth or survival to a given age) are important indicators of health status in a country. Because data on the incidence and prevalence of diseases are frequently unavailable, mortality rates are often used to identify vulnerable populations. And they are among the indicators most frequently used to compare socioeconomic development across countries.</p>
+    <p><b>Statistical Concept and Methodology:</b> Life expectancy at birth used here is the average number of years a newborn is expected to live if mortality patterns at the time of its birth remain constant in the future. It reflects the overall mortality level of a population, and summarizes the mortality pattern that prevails across all age groups in a given year. It is calculated in a period life table which provides a snapshot of a population's mortality pattern at a given time. It therefore does not reflect the mortality pattern that a person actually experiences during his/her life, which can be calculated in a cohort life table. High mortality in young age groups significantly lowers the life expectancy at birth. But if a person survives his/her childhood of high mortality, he/she may live much longer. For example, in a population with a life expectancy at birth of 50, there may be few people dying at age 50. The life expectancy at birth may be low due to the high childhood mortality so that once a person survives his/her childhood, he/she may live much longer than 50 years.</p>
+  </p>
+
 
   </div>
 
-<a href="index.html" class="next">Start Over</a>
 
 
-<br>
-<br>
-  <!-- Initialize a select button -->
-  <select id="selectButton"></select>
-
-
-
-  <!-- Create a div where the graph will take place -->
-  <div id="my_dataviz"></div>
 
   <p>World Development Indicator Information
     <br>

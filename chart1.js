@@ -1,8 +1,8 @@
 async function init1() {
-  var margin = { top: 75, right: 100, bottom: 200, left: 150 },
+  var margin = { top: 50, right: 100, bottom: 80, left: 50 },
     width = 960 - margin.left - margin.right,
     //width = 960  - margin.left,
-    height = 960 - margin.top - margin.bottom;
+    height = 650 - margin.top - margin.bottom;
 
   var svg = d3.select("#my_dataviz")
     .append("svg")
@@ -10,7 +10,8 @@ async function init1() {
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform",
-      "translate(" + margin.left + "," + margin.top + ")");
+    "translate(" + margin.left + "," + margin.top + ")");
+
 
 
   const data = await d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/world.csv");
@@ -29,15 +30,16 @@ async function init1() {
     .range([0, width ]);
 
   svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).tickValues([1962,1966,1970,1974,1978,1982,1986,1990,1994,1998,2002,2006,2010,2014,2018]));
+    .attr("transform", "translate(10," + height + ")")
+    .call(d3.axisBottom(x).tickValues([1962,1966,1970,1974,1978,1982,1986,1990,1994,1998,2002,2006,2010,2014,2018]))
+    .style("font-size","12px");
 
 
  // text label for the x axis
   svg.append("text")
     .attr("transform",
           "translate(" + (width/2) + " ," +
-                         (height + margin.top + 20) + ")")
+                         (height + margin.top ) + ")")
     .style("text-anchor", "middle")
     .text("Year");
 
@@ -48,43 +50,37 @@ async function init1() {
     .range([height, 0]);
 
   svg.append("g")
-    .call(d3.axisLeft(y));
+    .attr("transform", "translate(10,0 )")
+    .call(d3.axisLeft(y))
+    .style("font-size","12px");
 
     // text label for the y axis
   svg.append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 0 - margin.left)
-      .attr("x",0 - (height / 2))
+      .attr("x", 0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
       .text("Life Expectancy");
 
-  svg.append("path")
-    .datum(data)
-    .attr("fill", "none")
-    .attr("stroke", "steelblue")
-    .attr("stroke-width", 1.5)
-    .attr("d", d3.line()
-      .x(function (d) { return x(d.date) })
-      .y(function (d) { return y(d.value) })
-    )
+
 
     // gridlines in x axis function
 function make_x_gridlines() {
     return d3.axisBottom(x)
-        .ticks(10)
+        .ticks(14)
 }
 
 // gridlines in y axis function
 function make_y_gridlines() {
     return d3.axisLeft(y)
-        .ticks(10)
+        .ticks(12)
 }
 
 // add the X gridlines
 svg.append("g")
   .attr("class", "grid")
-  .attr("transform", "translate(0," + height + ")")
+  .attr("transform", "translate(25," + height + ")")
   .call(make_x_gridlines()
       .tickSize(-height)
       .tickFormat("")
@@ -92,10 +88,48 @@ svg.append("g")
 
 // add the Y gridlines
 svg.append("g")
+.attr("transform", "translate(12,0 )")
   .attr("class", "grid")
   .call(make_y_gridlines()
       .tickSize(-width)
       .tickFormat("")
   )
+
+
+  svg.append("path")
+  .attr("transform", "translate(10,0 )")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "steelblue")
+    .attr("stroke-width", 2.5)
+    .attr("d", d3.line()
+      .x(function (d) { return x(d.date) })
+      .y(function (d) { return y(d.value) })
+    )
+
+  // Features of the annotation visit https://www.d3-graph-gallery.com/graph/custom_annotation.html for more changes
+  const annotations = [
+    {
+      note: {
+  label: "Life expectancy around the world is increasing steadily",
+  //title: "Annotation title",
+  //align: "middle",  // try right or left
+  wrap: 200,  // try something smaller to see text split in several lines
+  padding: 10   // More = text lower
+},
+color: ["#69b3a2"],
+      x: (width / 2) - 50,
+      y: (height / 2) - 40,
+      dy: 50,
+      dx: 50
+    }
+  ]
+
+  // Add annotation to the chart
+  const makeAnnotations = d3.annotation()
+    .annotations(annotations)
+  svg.append("g")
+    .call(makeAnnotations)
+
 
 }

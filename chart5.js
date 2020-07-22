@@ -1,8 +1,8 @@
 async function init4() {
-  var margin = { top: 75, right: 100, bottom: 200, left: 150 },
+  var margin = { top: 50, right: 100, bottom: 80, left: 50 },
     width = 960 - margin.left - margin.right,
     //width = 960  - margin.left,
-    height = 960 - margin.top - margin.bottom;
+    height = 650 - margin.top - margin.bottom;
 
   var svg = d3.select("#my_dataviz")
     .append("svg")
@@ -10,7 +10,7 @@ async function init4() {
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform",
-      "translate(" + margin.left + "," + margin.top + ")");
+    "translate(" + margin.left + "," + margin.top + ")");
 
 
 
@@ -35,25 +35,47 @@ async function init4() {
 
   // Add X axis --> it is a date format
   var x = d3.scaleLinear()
-    .domain(d3.extent(data, function(d) { return d.year; }))
-    .range([ 0, width ]);
-  svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).ticks(12));
+    //.domain(d3.extent(data, function (d) { return d.date; }))
+    .domain([1962,2018])
+    .range([0, width ]);
+
+    svg.append("g")
+      .attr("transform", "translate(10," + height + ")")
+      .call(d3.axisBottom(x).tickValues([1962,1966,1970,1974,1978,1982,1986,1990,1994,1998,2002,2006,2010,2014,2018]))
+      .style("font-size","12px");
+
+      // text label for the x axis
+ svg.append("text")
+   .attr("transform",
+         "translate(" + (width/2) + " ," +
+                        (height + margin.top ) + ")")
+   .style("text-anchor", "middle")
+   .text("Year");
 
   // Add Y axis
   var y = d3.scaleLinear()
     .domain([25, d3.max(data, function(d) { return +d.value; })])
     .range([ height, 0 ]);
-  svg.append("g")
-    .call(d3.axisLeft(y));
 
+    svg.append("g")
+      .attr("transform", "translate(10,0 )")
+      .call(d3.axisLeft(y))
+      .style("font-size","12px");
 
+      // text label for the y axis
+    svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Life Expectancy");
 
   // Initialize line with first group of the list
   var line = svg
     .append('g')
     .append("path")
+    .attr("transform", "translate(10,0 )")
       .datum(data.filter(function(d){return d.country==allGroup[0]}))
       .attr("d", d3.line()
         .x(function(d) { return x(d.year) })
@@ -101,6 +123,7 @@ async function init4() {
 
 
     svg.append("path")
+    .attr("transform", "translate(10,0 )")
       .datum(data1)
       .attr("fill", "none")
       .attr("stroke", "steelblue")

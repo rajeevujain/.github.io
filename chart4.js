@@ -30,7 +30,7 @@ async function init1() {
 
     svg.append("g")
       .attr("transform", "translate(10," + height + ")")
-      .call(d3.axisBottom(x).tickValues([1962,1966,1970,1974,1978,1982,1986,1990,1994,1998,2002,2006,2010,2014,2018]))
+      .call(d3.axisBottom(x).tickValues([1962,1966,1970,1974,1978,1982,1986,1990,1994,1998,2002,2006,2010,2014,2018]).tickFormat(d3.format("d")))
       .style("font-size","12px");
 
       // text label for the x axis
@@ -63,8 +63,8 @@ async function init1() {
 
         // gridlines in x axis function
     function make_x_gridlines() {
-        return d3.axisBottom(x)
-            .ticks(14)
+        return d3.axisBottom(x).tickValues([1962,1966,1970,1974,1978,1982,1986,1990,1994,1998,2002,2006,2010,2014,2018])
+            //.ticks(14)
     }
 
     // gridlines in y axis function
@@ -76,7 +76,7 @@ async function init1() {
     // add the X gridlines
     svg.append("g")
       .attr("class", "grid")
-      .attr("transform", "translate(25," + height + ")")
+      .attr("transform", "translate(10," + height + ")")
       .call(make_x_gridlines()
           .tickSize(-height)
           .tickFormat("")
@@ -155,6 +155,29 @@ async function init1() {
     //  svg.append("text").attr("x", 700).attr("y", 20).text("Female").style("font-size", "15px").attr("alignment-baseline","middle")
     //  svg.append("text").attr("x", 700).attr("y", 80).text("World, total").style("font-size", "15px").attr("alignment-baseline","middle")
     //  svg.append("text").attr("x", 700).attr("y", 140).text("Male").style("font-size", "15px").attr("alignment-baseline","middle")
+    // Features of the annotation visit https://www.d3-graph-gallery.com/graph/custom_annotation.html for more changes
+    const annotations = [
+      {
+        note: {
+    label: "Female Life expectancy is always more then male",
+    //title: "Annotation title",
+    //align: "middle",  // try right or left
+    wrap: 200,  // try something smaller to see text split in several lines
+    padding: 10   // More = text lower
+    },
+    color: ["orange"],
+        x: (width / 2) - 50,
+        y: (height / 2) - 80,
+        dy: 100,
+        dx: 50
+      }
+    ]
+
+    // Add annotation to the chart
+    const makeAnnotations = d3.annotation()
+      .annotations(annotations)
+    svg.append("g")
+      .call(makeAnnotations)
 
 
 }

@@ -1,77 +1,205 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<meta charset="utf-8">
 
 <head>
   <meta charset="utf-8">
-  <script src="https://d3js.org/d3.v5.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
   <!-- Load d3-annotation -->
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
+<!-- Add 2 buttons -->
+
 </head>
 
-<body onload='init4();'>
+<body onload='init1();'>
+
 
   <div class="Heading">
-    <h1>Explore Life Expectancy for all Countries</h1>
+    <h1>Life Expectancy at Birth for Top and Bottom Countries</h1>
   </div>
 
   <div class="MainContent">
     <p>In the early 19th century, life expectancy started to increase in the early industrialized countries while it stayed low in the rest of the world. This led to a very high inequality in how health was distributed across the world. Good health in the rich countries and persistently bad health in those countries that remained poor. Over the last decades this global inequality decreased. No country in the world has a lower life expectancy than the countries with the highest life expectancy in 1800. Many countries that not long ago were suffering from bad health are catching up rapidly. The inequality of life expectancy is still very large across and within countries. In 2018 the country with the lowest life expectancy is the Central African Republic with 53 years, in Hong Kong life expectancy is 32 years longer.</p>
-<p>Life expectancy is a measure of premature death and it shows large differences in health across the world.
-The population of many of the richest countries in the world have life expectancies of over 80 years. In 2018 the life expectancy in Spain, Switzerland, Italy, and Japan was over 83 years. In Hong Kong it was the highest with close to 85 years.
-In the countries with the worst health life expectancy is between 50 and 60 years. The population of the Central African Republic has the lowest life expectancy in 2018 with 53 years.</p>
+    <p>Life expectancy is a measure of premature death and it shows large differences in health across the world.
+    The population of many of the richest countries in the world have life expectancies of over 80 years. In 2018 the life expectancy in Spain, Switzerland, Italy, and Japan was over 83 years. In Hong Kong it was the highest with close to 85 years.
+    In the countries with the worst health life expectancy is between 50 and 60 years. The population of the Central African Republic has the lowest life expectancy in 2018 with 53 years.</p>
   </div>
-
 
   <table>
     <tr>
-      <td style="text-align:left;"><a href="index.html" class="next">Start Over</a>
+      <td style="text-align:left;"><a href="chart6.html" class="next">Next Page &raquo;</a>
       </td>
     </tr>
-
-    <tr>
+<tr>
   <td>
-    <p><u>This chart compare life expectancy for specific country with total world</u></p>
+    <p><u>Chart shows life expectancy in years at birth for top and bottom countries</u></p>
   </td>
 </tr>
 
+<tr>
+  <td><button onclick="update(data1)">Top</button>
+  <button onclick="update(data2)">Bottom</button></td>
+</tr>
+
     <tr>
-      <td><div style="text-align:left;"><select id="selectButton"></select></div>
-        <div id="my_dataviz"></div></td>
+      <td><div id="my_dataviz"></div></td>
+    </tr>
+
+    <tr>
+      <td><p><span style="font-weight:normal">Hong Kong* = Hong Kong SAR, China <br>
+Macao* = Macao SAR, China <br>
+Central African* = Central African Republic <br>
+Guinea* = Guinea-Bissau</p>
+
+</td>
     </tr>
 
   </table>
 
+<div class="fotter">
+
+  <p><u><b>World Development Indicator Information</b></u></p>
+  <p><b>Indicator Name:</b> Life expectancy at birth, total (years)</p>
+  <p><b>Indicator Definition:</b> Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.</p>
+  <p><b>Aggregation Method:</b> Weighted average</p>
+  <p><b>Development Relevance:</b> Mortality rates for different age groups (infants, children, and adults) and overall mortality indicators (life expectancy at birth or survival to a given age) are important indicators of health status in a country. Because data on the incidence and prevalence of diseases are frequently unavailable, mortality rates are often used to identify vulnerable populations. And they are among the indicators most frequently used to compare socioeconomic development across countries.</p>
+  <p><b>Statistical Concept and Methodology:</b> Life expectancy at birth used here is the average number of years a newborn is expected to live if mortality patterns at the time of its birth remain constant in the future. It reflects the overall mortality level of a population, and summarizes the mortality pattern that prevails across all age groups in a given year. It is calculated in a period life table which provides a snapshot of a population's mortality pattern at a given time. It therefore does not reflect the mortality pattern that a person actually experiences during his/her life, which can be calculated in a cohort life table. High mortality in young age groups significantly lowers the life expectancy at birth. But if a person survives his/her childhood of high mortality, he/she may live much longer. For example, in a population with a life expectancy at birth of 50, there may be few people dying at age 50. The life expectancy at birth may be low due to the high childhood mortality so that once a person survives his/her childhood, he/she may live much longer than 50 years.</p>
+</p>
 
 
-  <div class="fotter">
-
-    <p><u><b>World Development Indicator Information</b></u></p>
-    <p><b>Indicator Name:</b> Life expectancy at birth, total (years)</p>
-    <p><b>Indicator Definition:</b> Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.</p>
-    <p><b>Aggregation Method:</b> Weighted average</p>
-    <p><b>Development Relevance:</b> Mortality rates for different age groups (infants, children, and adults) and overall mortality indicators (life expectancy at birth or survival to a given age) are important indicators of health status in a country. Because data on the incidence and prevalence of diseases are frequently unavailable, mortality rates are often used to identify vulnerable populations. And they are among the indicators most frequently used to compare socioeconomic development across countries.</p>
-    <p><b>Statistical Concept and Methodology:</b> Life expectancy at birth used here is the average number of years a newborn is expected to live if mortality patterns at the time of its birth remain constant in the future. It reflects the overall mortality level of a population, and summarizes the mortality pattern that prevails across all age groups in a given year. It is calculated in a period life table which provides a snapshot of a population's mortality pattern at a given time. It therefore does not reflect the mortality pattern that a person actually experiences during his/her life, which can be calculated in a cohort life table. High mortality in young age groups significantly lowers the life expectancy at birth. But if a person survives his/her childhood of high mortality, he/she may live much longer. For example, in a population with a life expectancy at birth of 50, there may be few people dying at age 50. The life expectancy at birth may be low due to the high childhood mortality so that once a person survives his/her childhood, he/she may live much longer than 50 years.</p>
-  </p>
+</div>
 
 
-  </div>
+<script type="text/javascript">
+var margin = { top: 50, right: 100, bottom: 80, left: 50 },
+    width = 960 - margin.left - margin.right,
+    //width = 960  - margin.left,
+    height = 650 - margin.top - margin.bottom;
+
+  var svg = d3.select("#my_dataviz")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+    "translate(" + margin.left + "," + margin.top + ")");
+
+    var data1 = [
+       {group: "Hong Kong*", value: 84.93414634},
+       {group: "Japan", value: 84.21097561},
+       {group: "Macao*", value: 84.118},
+       {group: "Switzerland", value: 83.75365854},
+       {group: "Spain", value: 83.43170732},
+       {group: "Italy", value: 83.34634146},
+       {group: "Singapore", value: 83.14634146},
+       {group: "Liechtenstein", value: 83.04146341},
+       {group: "Channel Islands", value: 82.928},
+       {group: "Iceland", value: 82.86097561}
+
+    ];
+
+    var data2 = [
+    {group: "Central African*", value: 52.805},
+    {group: "Lesotho", value: 53.705},
+    {group: "Chad", value: 53.977},
+    {group: "Sierra Leone", value: 54.309},
+    {group: "Nigeria", value: 54.332},
+    {group: "Somalia", value: 57.068},
+    {group: "Cote d'Ivoire", value: 57.422},
+    {group: "South Sudan", value: 57.604},
+    {group: "Guinea*", value: 58.003},
+    {group: "Equatorial Guinea", value: 58.402},
+    ];
+
+  //const data = await d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/world.csv");
+  //const data = d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/world.csv");
+
+//  data.forEach(function (d) {
+//    date = d.date;
+//    value = d.value;
+//  })
+
+
+// Initialize the X axis
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .padding(0.2);
+
+var xAxis = svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .style("font-size","11px");
+
+
+  // Initialize the Y axis
+  var y = d3.scaleLinear()
+    .range([ height, 0]);
+
+  var yAxis = svg.append("g")
+    .attr("class", "myYaxis")
+    .style("font-size","11px");
+
+
+ // text label for the x axis
+  svg.append("text")
+    .attr("transform",
+          "translate(" + (width/2) + " ," +
+                         (height + margin.top ) + ")")
+    .style("text-anchor", "middle")
+    .text("Countries");
+
+
+    // text label for the y axis
+  svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x", 0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Life Expectancy");
+
+
+      // A function that create / update the plot for a given variable:
+      function update(data) {
+
+        // Update the X axis
+        x.domain(data.map(function(d) { return d.group; }))
+        xAxis.call(d3.axisBottom(x))
+
+        // Update the Y axis
+        y.domain([d3.max(data, function(d) { return d.value }) - 6, d3.max(data, function(d) { return d.value }) ]);
+        yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+        // Create the u variable
+        var u = svg.selectAll("rect")
+          .data(data)
+
+        u
+          .enter()
+          .append("rect") // Add a new rect for each new elements
+          .merge(u) // get the already existing elements as well
+          .transition() // and apply changes to all of them
+          .duration(1000)
+            .attr("x", function(d) { return x(d.group); })
+            .attr("y", function(d) { return y(d.value); })
+            .attr("width", x.bandwidth())
+            .attr("height", function(d) { return height - y(d.value); })
+            .attr("fill", "#69b3a2")
+
+        // If less group in the new dataset, I delete the ones not in use anymore
+        u
+          .exit()
+          .remove()
+      }
+
+      // Initialize the plot with the first dataset
+      update(data1)
 
 
 
+</script>
 
-  <p>World Development Indicator Information
-    <br>
-  Indicator Name : Life expectancy at birth, total (years)
-  Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.
-  Aggregation Method: Weighted average
-  Development Relevance: Mortality rates for different age groups (infants, children, and adults) and overall mortality indicators (life expectancy at birth or survival to a given age) are important indicators of health status in a country. Because data on the incidence and prevalence of diseases are frequently unavailable, mortality rates are often used to identify vulnerable populations. And they are among the indicators most frequently used to compare socioeconomic development across countries.
-  Statistical Concept and Methodology: Life expectancy at birth used here is the average number of years a newborn is expected to live if mortality patterns at the time of its birth remain constant in the future. It reflects the overall mortality level of a population, and summarizes the mortality pattern that prevails across all age groups in a given year. It is calculated in a period life table which provides a snapshot of a population's mortality pattern at a given time. It therefore does not reflect the mortality pattern that a person actually experiences during his/her life, which can be calculated in a cohort life table. High mortality in young age groups significantly lowers the life expectancy at birth. But if a person survives his/her childhood of high mortality, he/she may live much longer. For example, in a population with a life expectancy at birth of 50, there may be few people dying at age 50. The life expectancy at birth may be low due to the high childhood mortality so that once a person survives his/her childhood, he/she may live much longer than 50 years.</p>
 
-  <!-- Color Scale -->
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-
-  <script src="chart5.js"></script>
 
 </body>
+</html>

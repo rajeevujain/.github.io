@@ -30,7 +30,7 @@ async function init1() {
 
     svg.append("g")
       .attr("transform", "translate(10," + height + ")")
-      .call(d3.axisBottom(x).tickValues([1962,1966,1970,1974,1978,1982,1986,1990,1994,1998,2002,2006,2010,2014,2018]))
+      .call(d3.axisBottom(x).tickValues([1962,1966,1970,1974,1978,1982,1986,1990,1994,1998,2002,2006,2010,2014,2018]).tickFormat(d3.format("d")))
       .style("font-size","12px");
 
 
@@ -66,8 +66,8 @@ async function init1() {
 
       // gridlines in x axis function
   function make_x_gridlines() {
-      return d3.axisBottom(x)
-          .ticks(14)
+      return d3.axisBottom(x).tickValues([1962,1966,1970,1974,1978,1982,1986,1990,1994,1998,2002,2006,2010,2014,2018])
+        //  .ticks(14)
   }
 
   // gridlines in y axis function
@@ -79,7 +79,7 @@ async function init1() {
   // add the X gridlines
   svg.append("g")
     .attr("class", "grid")
-    .attr("transform", "translate(25," + height + ")")
+    .attr("transform", "translate(10," + height + ")")
     .call(make_x_gridlines()
         .tickSize(-height)
         .tickFormat("")

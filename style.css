@@ -9,7 +9,7 @@ body{
 
 .grid line {
   stroke: lightgrey;
-  stroke-opacity: 0.7;
+  stroke-opacity: 0.4;
   shape-rendering: crispEdges;
 }
 
@@ -68,7 +68,7 @@ td{
   width: 100%;
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
-  
+
   font-weight: bold;
 
 }

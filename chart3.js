@@ -106,5 +106,28 @@ async function init1() {
         .y(function (d) { return y(d.value) })
       )
 
+      // Features of the annotation visit https://www.d3-graph-gallery.com/graph/custom_annotation.html for more changes
+      const annotations = [
+        {
+          note: {
+      label: "Life expectancy for male world population is also increasing steadily",
+      //title: "Annotation title",
+      //align: "middle",  // try right or left
+      wrap: 200,  // try something smaller to see text split in several lines
+      padding: 10   // More = text lower
+      },
+      color: ["orange"],
+          x: (width / 2) - 50,
+          y: (height / 2) - 25,
+          dy: 50,
+          dx: 50
+        }
+      ]
+
+      // Add annotation to the chart
+      const makeAnnotations = d3.annotation()
+        .annotations(annotations)
+      svg.append("g")
+        .call(makeAnnotations)
 
 }

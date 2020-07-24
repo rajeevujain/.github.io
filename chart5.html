@@ -8,11 +8,10 @@
   <!-- Load d3-annotation -->
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<!-- Add 2 buttons -->
-
 </head>
 
-<body onload='init1();'>
+
+<body>
 
 
   <div class="Heading">
@@ -33,13 +32,13 @@
     </tr>
 <tr>
   <td>
-    <p><u>Chart shows life expectancy in years at birth for top and bottom countries</u></p>
+    <p><u>Chart shows life expectancy in years at birth for top and bottom countries for year 2018</u></p>
   </td>
 </tr>
 
 <tr>
-  <td><button onclick="update(data1)">Top</button>
-  <button onclick="update(data2)">Bottom</button></td>
+  <td><button onclick="update(data1)">Top 10 Countries</button>
+  <button onclick="update(data2)">Bottom 10 Countries</button></td>
 </tr>
 
     <tr>
@@ -60,7 +59,7 @@ Guinea* = Guinea-Bissau</p>
 <div class="fotter">
 
   <p><u><b>World Development Indicator Information</b></u></p>
-  <p><b>Indicator Name:</b> Life expectancy at birth, total (years)</p>
+  <p><b>Indicator Name:</b> Life expectancy at birth (years)</p>
   <p><b>Indicator Definition:</b> Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.</p>
   <p><b>Aggregation Method:</b> Weighted average</p>
   <p><b>Development Relevance:</b> Mortality rates for different age groups (infants, children, and adults) and overall mortality indicators (life expectancy at birth or survival to a given age) are important indicators of health status in a country. Because data on the incidence and prevalence of diseases are frequently unavailable, mortality rates are often used to identify vulnerable populations. And they are among the indicators most frequently used to compare socioeconomic development across countries.</p>
@@ -72,7 +71,7 @@ Guinea* = Guinea-Bissau</p>
 
 
 <script type="text/javascript">
-var margin = { top: 50, right: 100, bottom: 80, left: 50 },
+var margin = { top: 50, right: 100, bottom: 80, left: 70 },
     width = 960 - margin.left - margin.right,
     //width = 960  - margin.left,
     height = 650 - margin.top - margin.bottom;
@@ -120,7 +119,6 @@ var margin = { top: 50, right: 100, bottom: 80, left: 50 },
 //    value = d.value;
 //  })
 
-
 // Initialize the X axis
 var x = d3.scaleBand()
   .range([ 0, width ])
@@ -159,6 +157,7 @@ var xAxis = svg.append("g")
       .text("Life Expectancy");
 
 
+
       // A function that create / update the plot for a given variable:
       function update(data) {
 
@@ -166,25 +165,60 @@ var xAxis = svg.append("g")
         x.domain(data.map(function(d) { return d.group; }))
         xAxis.call(d3.axisBottom(x))
 
+        if (data == data1) {
+          y.domain([d3.max(data, function(d) { return d.value }) - 3, d3.max(data, function(d) { return d.value }) ]);
+          yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+        } else {
+          y.domain([d3.max(data, function(d) { return d.value }) - 6, d3.max(data, function(d) { return d.value }) ]);
+          yAxis.transition().duration(1000).call(d3.axisLeft(y));
+
+        }
+
         // Update the Y axis
-        y.domain([d3.max(data, function(d) { return d.value }) - 6, d3.max(data, function(d) { return d.value }) ]);
-        yAxis.transition().duration(1000).call(d3.axisLeft(y));
+        //y.domain([d3.max(data, function(d) { return d.value }) - 6, d3.max(data, function(d) { return d.value }) ]);
+        //yAxis.transition().duration(1000).call(d3.axisLeft(y));
 
         // Create the u variable
         var u = svg.selectAll("rect")
           .data(data)
 
-        u
-          .enter()
-          .append("rect") // Add a new rect for each new elements
-          .merge(u) // get the already existing elements as well
-          .transition() // and apply changes to all of them
-          .duration(1000)
-            .attr("x", function(d) { return x(d.group); })
-            .attr("y", function(d) { return y(d.value); })
-            .attr("width", x.bandwidth())
-            .attr("height", function(d) { return height - y(d.value); })
-            .attr("fill", "#69b3a2")
+
+          if (data == data1) {
+            u
+              .enter()
+              .append("rect") // Add a new rect for each new elements
+              .merge(u) // get the already existing elements as well
+              .transition() // and apply changes to all of them
+              .duration(1000)
+                .attr("x", function(d) { return x(d.group); })
+                .attr("y", function(d) { return y(d.value); })
+                .attr("width", x.bandwidth())
+                .attr("height", function(d) { return height - y(d.value); })
+                .attr("fill", "#69b3a2")
+
+
+
+          }
+          else {
+            u
+              .enter()
+              .append("rect") // Add a new rect for each new elements
+              .merge(u) // get the already existing elements as well
+              .transition() // and apply changes to all of them
+              .duration(1000)
+                .attr("x", function(d) { return x(d.group); })
+                .attr("y", function(d) { return y(d.value); })
+                .attr("width", x.bandwidth())
+                .attr("height", function(d) { return height - y(d.value); })
+                .attr("fill", "#b3697a")
+
+
+          }
+
+
+
+
 
         // If less group in the new dataset, I delete the ones not in use anymore
         u

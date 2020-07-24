@@ -167,7 +167,7 @@ async function init1() {
     },
     color: ["orange"],
         x: (width / 2) - 50,
-        y: (height / 2) - 80,
+        y: (height / 2) - 90,
         dy: 100,
         dx: 50
       }

@@ -16,16 +16,15 @@ async function init4() {
 
 
 
-  //const data = await d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/All_Countries_pivot.csv");
+
   const data = await d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/All_Countries_pivot_sort.csv");
 
-  //const data = d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/world.csv");
+
 
 var selected1 = new Object();
   // List of groups (here I have one group per column)
   var allGroup = d3.map(data, function(d){return(d.country)}).keys()
 selected1 = allGroup[0];
-  var allYear = d3.map(data, function(d){return(d.year)}).keys()
 
   // add the options to the button
   d3.select("#selectButton")
@@ -38,10 +37,7 @@ selected1 = allGroup[0];
 
 
 
-  // A color scale: one color for each group
-  var myColor = d3.scaleOrdinal()
-    .domain(allGroup)
-    .range(d3.schemeSet2);
+
 
   // Add X axis --> it is a date format
   var x = d3.scaleLinear()
@@ -91,7 +87,8 @@ selected1 = allGroup[0];
         .x(function(d) { return x(d.year) })
         .y(function(d) { return y(+d.value) })
       )
-      .attr("stroke", function(d){ return myColor("valueA") })
+      //.attr("stroke", function(d){ return myColor("valueA") })
+      .attr("stroke", "steelblue")
       .style("stroke-width", 2.5)
       .style("fill", "none")
 
@@ -133,7 +130,8 @@ selected1 = allGroup[0];
           .x(function(d) { return x(d.year) })
           .y(function(d) { return y(+d.value) })
         )
-        .attr("stroke", function(d){ return myColor(selectedGroup) })
+        //.attr("stroke", function(d){ return myColor(selectedGroup) })
+        .attr("stroke", "steelblue")
   }
 
   // When the button is changed, run the updateChart function

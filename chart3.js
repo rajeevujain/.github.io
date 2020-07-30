@@ -14,7 +14,7 @@ async function init1() {
 
 
   const data = await d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/male_world.csv");
-  //const data = d3.csv("https://raw.githubusercontent.com/rajeevujain/DV/master/world.csv");
+
 
   data.forEach(function (d) {
       date = d.date;
@@ -106,28 +106,51 @@ async function init1() {
         .y(function (d) { return y(d.value) })
       )
 
-      // Features of the annotation visit https://www.d3-graph-gallery.com/graph/custom_annotation.html for more changes
-      const annotations = [
-        {
-          note: {
-      label: "Life expectancy for male world population is also increasing steadily",
-      //title: "Annotation title",
-      //align: "middle",  // try right or left
-      wrap: 200,  // try something smaller to see text split in several lines
-      padding: 10   // More = text lower
-      },
-      color: ["orange"],
-          x: (width / 2) - 50,
-          y: (height / 2) - 25,
-          dy: 50,
-          dx: 50
-        }
-      ]
 
-      // Add annotation to the chart
-      const makeAnnotations = d3.annotation()
-        .annotations(annotations)
-      svg.append("g")
-        .call(makeAnnotations)
+          var circleData = [
+           { "cx": (width / 2) - 50, "cy": (height / 2) - 20, "radius": 5, "color" : "orange" }];
+
+           svg.selectAll("circle")
+           .data(circleData)
+           .enter()
+           .append("circle")
+           .attr("cx", function (d) { return d.cx; })
+           .attr("cy", function (d) { return d.cy; })
+           .attr("r", function (d) { return d.radius; })
+           .style("fill", function (d) { return d.color; });
+
+
+          svg.append("text")
+             .attr("transform",
+                 "translate(" + (width / 2) + " ," +
+                              ((height / 2) + 57) + ")")
+           //.style("text-anchor", "middle")
+           .text("Life expectancy for male world")
+           .style("fill", "orange");
+
+           svg.append("text")
+              .attr("transform",
+                  "translate(" + (width / 2) + " ," +
+                               ((height / 2) + 77) + ")")
+            //.style("text-anchor", "middle")
+            .text("population is also increasing steadily")
+            .style("fill", "orange");
+
+           svg.append('line')
+               .style("stroke", "orange")
+               .style("stroke-width", 2.5)
+               .attr("x1", (width / 2) - 50)
+               .attr("y1", (height / 2) - 20)
+               .attr("x2", (width / 2) )
+               .attr("y2", (height / 2) + 32);
+
+
+               svg.append('line')
+                   .style("stroke", "orange")
+                   .style("stroke-width", 2.5)
+                   .attr("x1", (width / 2) )
+                   .attr("y1", (height / 2) +32)
+                   .attr("x2", (width / 2) + 270)
+                   .attr("y2", (height / 2) + 32);
 
 }
